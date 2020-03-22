@@ -37,12 +37,9 @@ class Ship {
 
   updatePart(part) {
     if (part.type != undefined) {
-      // update existing part
-      if (this.parts[part.type]) {
-        // don't forget the old value when you replace it
+      if (this.parts[part.type])
         var oldValue = this.parts[part.type].value;
       }
-      // reassign the value and give me back the difference
       this.parts[part.type] = part;
       return oldValue - part.value
     }
@@ -50,15 +47,11 @@ class Ship {
 
   checkReadiness() {
     var status = {readyToFly: false}
-    // all parameters are combined to create a true response
     if (this.fuel && this.captain && Object.keys(this.parts).length) {
       status.readyToFly = true;
       status.notes = 'Good to go!';
     }
     if (!Object.keys(this.parts).length) {
-      // can't .length an object, so this has basically turned the keys
-      // of the object into an array so that it can iterate through them
-      // to check the length
       status.notes = 'Cannot fly without all parts';
     }
     if (!this.fuel) {
